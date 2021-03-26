@@ -8,13 +8,12 @@ int main()
 	// P0, P1, P2, P3, P4 are the Process names here 
 
 	int  i, j, k;
-	const int n = 5; // Number of processes 
-	const int  m = 3; // Number of resources 
-	int allocation[5][3] = { { 0, 1, 0 }, // P0 // Allocation Matrix 
-						{ 2, 0, 0 }, // P1 
-						{ 3, 0, 2 }, // P2 
-						{ 2, 1, 1 }, // P3 
-						{ 0, 0, 2 } }; // P4 
+	const int n = 3; // Number of processes 
+	const int  m = 2; // Number of resources 
+	int allocation[3][2] = { { 0, 1, 0 }, // A // Allocation Matrix 
+						{ 2, 0, 0 }, // B 
+						{ 3, 0, 2 }, // C
+		
 
 	int max[5][3] = { { 7, 5, 3 }, // P0 // MAX Matrix 
 					{ 3, 2, 2 }, // P1 

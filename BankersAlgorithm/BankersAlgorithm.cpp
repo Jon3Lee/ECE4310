@@ -9,7 +9,7 @@ int main()
 	int  i, j, k;
 	const int n = 5; // Number of processes 
 	const int  m = 3; // Number of resources 
-	int alloc[5][3] = { { 0, 1, 0 }, // P0 // Allocation Matrix 
+	int allocation[5][3] = { { 0, 1, 0 }, // P0 // Allocation Matrix 
 						{ 2, 0, 0 }, // P1 
 						{ 3, 0, 2 }, // P2 
 						{ 2, 1, 1 }, // P3 
@@ -30,7 +30,7 @@ int main()
 	int need[n][m];
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++)
-			need[i][j] = max[i][j] - alloc[i][j];
+			need[i][j] = max[i][j] - allocation[i][j];
 	}
 	int y = 0;
 	for (k = 0; k < 5; k++) {
@@ -48,7 +48,7 @@ int main()
 				if (flag == 0) {
 					ans[ind++] = i;
 					for (y = 0; y < m; y++)
-						avail[y] += alloc[i][y];
+						avail[y] += allocation[i][y];
 					f[i] = 1;
 				}
 			}

@@ -10,16 +10,16 @@ int main()
 	int  i, j, k;
 	const int n = 3; // Number of processes 
 	const int  m = 2; // Number of resources 
-	int allocation[3][2] = { { 0, 1, 0 }, // A // Allocation Matrix 
-						{ 2, 0, 0 }, // B 
-						{ 3, 0, 2 }, // C
+	int need[n][m];
+	int allocation[3][1] = { { 0 }, // A // Allocation Matrix 
+						{ 2 }, // B 
+						{ 3 }, // C
 		
 
-	int max[5][3] = { { 7, 5, 3 }, // P0 // MAX Matrix 
-					{ 3, 2, 2 }, // P1 
-					{ 9, 0, 2 }, // P2 
-					{ 2, 2, 2 }, // P3 
-					{ 4, 3, 3 } }; // P4 
+	int max[3][2] = { { 7 }, // A // MAX Matrix 
+					{ 3 }, // B
+					{ 9 }, // C 
+					
 
 	int avail[3] = { 3, 3, 2 }; // Available Resources 
 
@@ -27,7 +27,7 @@ int main()
 	for (k = 0; k < n; k++) {
 		f[k] = 0;
 	}
-	int need[n][m];
+
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++)
 			need[i][j] = max[i][j] - allocation[i][j];

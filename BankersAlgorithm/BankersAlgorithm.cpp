@@ -1,7 +1,7 @@
 // Banker's Algorithm 
 #include <iostream> 
 
-// This is sub branch 1.
+// This is master branch.
 int main()
 {
 	int input;	// The input that is put as variable k in the midterm.

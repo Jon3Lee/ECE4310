@@ -2,7 +2,7 @@
 #include <iostream> 
 using namespace std;
 
-// This is the master branch.
+// This is sub branch 1.
 int main()
 {
 	// P0, P1, P2, P3, P4 are the Process names here 

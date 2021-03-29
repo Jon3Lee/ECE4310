@@ -16,12 +16,12 @@ int main()
 						{ 7 } };		 // C
 		
 
-	int max[3][1] = { { 38 },			// A // MAX Matrix 
+	int max[3][1] = { { input},			// A // MAX Matrix 
 					{ 24 },				// B
 					{ 30 } };			// C 
 					
 
-	int avail[1] = { 3 };				// Available Resources, or in the Midterm, it is "free"
+	int avail[3] = { {17},{32},{39} };		// Available Resources, or in the Midterm, it is "free"
 
 	int f[n],ans[n], ind = 0;		
 	for (k = 0; k < n; k++) {

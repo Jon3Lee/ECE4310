@@ -1,13 +1,7 @@
 // Banker's Algorithm 
 #include <iostream> 
-<<<<<<< HEAD
 
 // This is master branch.
-=======
-//using namespace std;
-
-// This is sub branch 1.
->>>>>>> 05d415a5e3babd5f76ef47be7883c41b5b14a7ea
 int main()
 {
 	int input;	// The input that is put as variable k in the midterm.
@@ -17,7 +11,6 @@ int main()
 	const int n = 3; // Number of processes 
 	const int  m = 2; // Number of resources 
 	int need[n][m];
-<<<<<<< HEAD
 	int allocation[3][1] = { { 15 },	 // A // Allocation Matrix 
 						{ 8 },			 // B 
 						{ 7 } };		 // C
@@ -29,19 +22,6 @@ int main()
 					
 
 	int avail[3] = { {17},{32},{39} };		// Available Resources, or in the Midterm, it is "free"
-=======
-	int allocation[3][1] = { { 15 }, // A // Allocation Matrix 
-						{ 8 }, // B 
-						{ 7 } }; // C
-		
-
-	int max[3][1] = { { 38 }, // A // MAX Matrix 
-					{ 24 }, // B
-					{ 30 } }; // C 
-					
-
-	int avail[1] = { 3 }; // Available Resources, or in the Midterm, it is "free"
->>>>>>> 05d415a5e3babd5f76ef47be7883c41b5b14a7ea
 
 	int f[n],ans[n], ind = 0;		
 	for (k = 0; k < n; k++) {

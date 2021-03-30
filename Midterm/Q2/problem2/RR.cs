@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace problem2
 {
+    //Preemptive
     public class RR
     {
         // Method to find the waiting time

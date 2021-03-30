@@ -22,6 +22,11 @@ namespace problem2
             Console.WriteLine("FCFS:");
             myFCFS.findavgTime(proc, proc.Length);
 
+            //SJN
+            SJN mySJN = new SJN();
+            Console.WriteLine("\nSJN:");
+            mySJN.findavgTime(proc, proc.Length);
+
             //SRTF Table 3
             SRTF mySRTF = new SRTF();
             Console.WriteLine("\nSRTF:");

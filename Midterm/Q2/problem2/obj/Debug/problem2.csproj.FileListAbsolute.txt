@@ -1,0 +1,7 @@
+F:\School\4310\Exam\Test1\problem2\obj\Debug\problem2.csprojAssemblyReference.cache
+F:\School\4310\Exam\Test1\problem2\obj\Debug\problem2.csproj.CoreCompileInputs.cache
+F:\School\4310\Exam\Test1\problem2\bin\Debug\problem2.exe.config
+F:\School\4310\Exam\Test1\problem2\bin\Debug\problem2.exe
+F:\School\4310\Exam\Test1\problem2\bin\Debug\problem2.pdb
+F:\School\4310\Exam\Test1\problem2\obj\Debug\problem2.exe
+F:\School\4310\Exam\Test1\problem2\obj\Debug\problem2.pdb

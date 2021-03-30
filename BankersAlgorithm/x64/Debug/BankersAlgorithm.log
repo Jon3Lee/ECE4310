@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 ﻿  BankersAlgorithm.vcxproj -> C:\Users\WillT\School\Spring 2021\ECE 4310\BankersAlgorithm\x64\Debug\BankersAlgorithm.exe
+=======
+﻿  BankersAlgorithm.cpp
+C:\Users\WillT\School\Spring 2021\ECE 4310\BankersAlgorithm\BankersAlgorithm\BankersAlgorithm.cpp(141): warning C4715: 'nSafeCheck': not all control paths return a value
+C:\Users\WillT\School\Spring 2021\ECE 4310\BankersAlgorithm\BankersAlgorithm\BankersAlgorithm.cpp(210): warning C4715: 'SafeCheck': not all control paths return a value
+C:\Users\WillT\School\Spring 2021\ECE 4310\BankersAlgorithm\BankersAlgorithm\BankersAlgorithm.cpp(175): warning C4715: 'mSafeCheck': not all control paths return a value
+  BankersAlgorithm.vcxproj -> C:\Users\WillT\School\Spring 2021\ECE 4310\BankersAlgorithm\x64\Debug\BankersAlgorithm.exe
+>>>>>>> new1

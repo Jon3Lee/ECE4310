@@ -1,72 +1,84 @@
-// Banker's Algorithm 
 #include <iostream> 
+using namespace std;
 
-// This is master branch.
+#define n 3
+
+bool SafeCheck(int free, int allocation[n], int max[n]);
+
 int main()
 {
-	int input;	// The input that is put as variable k in the midterm.
-	int  i, j, k;
-	std::cout << "Please enter the k you would like to test for safety:" << std::endl;
-	std::cin >> input;
-	const int n = 3; // Number of processes 
-	const int  m = 2; // Number of resources 
-	int need[n][m];
-	int allocation[3][1] = { { 15 },	 // A // Allocation Matrix 
-						{ 8 },			 // B 
-						{ 7 } };		 // C
-		
+    int input;    // The input that is put as variable k in the midterm.
+    cout << "Please enter the k you would like to test for safety:" << std::endl;
+    cin >> input;
 
-	int max[3][1] = { { input},			// A // MAX Matrix 
-					{ 24 },				// B
-					{ 30 } };			// C 
-					
 
-	int avail[3] = { {17},{32},{39} };		// Available Resources, or in the Midterm, it is "free"
+    int allocation[n] = { 15,     // A // Allocation Matrix 
+                         8 ,             // B 
+                         7 };         // C
 
-	int f[n],ans[n], ind = 0;		
-	for (k = 0; k < n; k++) {
-		f[k] = 0;
-	}
 
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < m; j++)
-			need[i][j] = max[i][j] - allocation[i][j];	// Need = Max - Available
-	}
-	int y = 0;
-	for (k = 0; k < 5; k++) {
-		for (i = 0; i < n; i++) {
-			if (f[i] == 0) {
 
-				int flag = 0;
-				for (j = 0; j < m; j++) {
-					if (need[i][j] > avail[j]) {
-						flag = 1;
-						break;
-					}
-				}
+    int max[n] = { input,            // A // MAX Matrix 
+                     24 ,                // B
+                     30 };            // C 
+    int free = 17;
 
-				if (flag == 0) {
-					ans[ind++] = i;
-					for (y = 0; y < m; y++)
-						avail[y] += allocation[i][y];
-					f[i] = 1;
-				}
-			}
-		}
-	}
 
-	std::cout << "Following is the SAFE Sequence..." << std::endl;
-	for (i = 0; i < n - 1; i++)
-		//if (-500 <= input && input <= 500) {	// This does not work, please REVISE.
-		//	std::cout << "The input: " << input << " is not safe!" << std::endl;
-		//}
-		//else {
-			std::cout << " P" << ans[i] << " ->";
-			std::cout << " P" << ans[n - 1] << std::endl;
-		//}
-	return (0);
+    if (SafeCheck(free, allocation, max) == true)
+    {
+        cout << "That value of K allows for a safe sequence\n";
+    }
+    else
+    {
+        cout << "That value of k does not allow for a safe sequence\n";
+    }
+
+    max[0] = allocation[0];    //allocation[A] = 15
+    while (SafeCheck(free, allocation, max) == true)
+    {
+        max[0] = max[0] + 1;
+    }
+
+    cout << "The range of safe values of k are: k <= " << max[0];
+    cout << "\nThe range of unsafe values of k are k > " << max[0];
+
+
+    return 0;
+
 }
+bool SafeCheck(int free, int allocation[n], int max[n])
+{
+    int flag = 0;
+    int need[n];
 
-// This code is contributed by SHUBHAMSINGH10 
-// ADDITIONAL INFO: This code was modified by willt2021
+    for (int i = 0; i < n; i++)
+    {
+        need[i] = max[i] - allocation[i];    // Need = Max - Available
+    }
 
+    for (int i = 0; i < n; i++)
+    {
+        if (free > need[i])
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if ((j != i) && (free + allocation[i] > need[j]))
+                {
+                    for (int k = 0; k < n; k++)
+                    {
+                        if ((k != i) && (k != j) && (free + allocation[i] + allocation[j] > need[k]))
+                        {
+                            return true;
+                            flag = 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (flag == 0)
+    {
+        return false;
+    }
+
+}

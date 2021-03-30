@@ -1,6 +1,7 @@
 #include <iostream> 
 using namespace std;
 
+// master branch
 #define n 3
 
 bool SafeCheck(int free, int allocation[n], int max[n]);

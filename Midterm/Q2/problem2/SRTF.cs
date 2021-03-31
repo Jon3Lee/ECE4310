@@ -107,14 +107,15 @@ namespace problem2
             // calculating turnaround time by adding
             // bt[i] + wt[i]
             for (int i = 0; i < n; i++)
-                tat[i] = proc[i].bt + wt[i];
+                tat[i] = wt[i] + proc[i].bt;   //service - arrival
         }
 
         // Method to calculate average time
+        //print
         public void findavgTime(Process[] proc, int n)
         {
             int[] wt = new int[n]; int[] tat = new int[n];
-            int total_wt = 0, total_tat = 0;
+            int total_wt = 0, total_tat = 0, service_time = 0;
 
             // Function to find waiting time of all
             // processes
@@ -129,19 +130,22 @@ namespace problem2
             Console.WriteLine("Processes " +
                             "\tArrival time " +
                             "\tBurst time " +
+                            "\tService time " +
                             "\tPriority " +
-                            "\tWaiting time " +
-                            "\tTurn around time");
+                            "\tWait time");
 
             // Calculate total waiting time and
             // total turnaround time
             for (int i = 0; i < n; i++)
             {
-                total_wt = total_wt + wt[i];
-                total_tat = total_tat + tat[i];
+                //tat = wt
+                //serv = wait - art
+                total_wt += wt[i];
+                total_tat += tat[i];
+                service_time = wt[i] + proc[i].bt + proc[i].art;
                 Console.WriteLine(" " + proc[i].pid + "\t\t"
-                                + proc[i].art + "\t\t " + proc[i].bt + "\t\t " + proc[i].p + "\t\t " + wt[i]  //print format
-                                + "\t\t" + tat[i]);
+                                + proc[i].art + "\t\t " + proc[i].bt + "\t\t" + service_time + "\t\t " + proc[i].p
+                                + "\t\t" + wt[i]);
             }
 
             Console.WriteLine("Average waiting time = " +

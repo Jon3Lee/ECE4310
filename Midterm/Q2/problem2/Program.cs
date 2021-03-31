@@ -8,6 +8,15 @@ namespace problem2
 {
     public class Program
     {
+        //public service time
+        public void findTurnAroundTime(Process[] proc, int n,
+                                int[] wt, int[] tat)
+        {
+            // calculating turnaround time by adding
+            // bt[i] + wt[i]
+            for (int i = 0; i < n; i++)
+                tat[i] = wt[i] + proc[i].art;   //wait + arrival
+        }
         public static void Main(string[] args)
         {
             //Process list
@@ -16,69 +25,50 @@ namespace problem2
                             new Process(2, 2, 8, 2),
                             new Process(3, 3, 7, 1),
                             new Process(4, 5, 3, 4)};
-
+            Process[] proc1 = { new Process(1, 0, 6, 3),
+                            new Process(2, 2, 8, 2),
+                            new Process(3, 3, 7, 1),
+                            new Process(4, 5, 3, 4)};
+            Process[] proc2 = { new Process(1, 0, 6, 3),
+                            new Process(2, 2, 8, 2),
+                            new Process(3, 3, 7, 1),
+                            new Process(4, 5, 3, 4)};
+            Process[] proc3 = { new Process(1, 0, 6, 3),
+                            new Process(2, 2, 8, 2),
+                            new Process(3, 3, 7, 1),
+                            new Process(4, 5, 3, 4)};
+            Process[] proc4 = { new Process(1, 0, 6, 3),
+                            new Process(2, 2, 8, 2),
+                            new Process(3, 3, 7, 1),
+                            new Process(4, 5, 3, 4)};
             //FCFS Table 1
             FCFS myFCFS = new FCFS();
             Console.WriteLine("FCFS:");
             myFCFS.findavgTime(proc, proc.Length);
 
+            
             //SJN
             SJN mySJN = new SJN();
             Console.WriteLine("\nSJN:");
-            mySJN.findavgTime(proc, proc.Length);
+            mySJN.findavgTime(proc1, proc1.Length);
 
             //SRTF Table 3
             SRTF mySRTF = new SRTF();
             Console.WriteLine("\nSRTF:");
-            mySRTF.findavgTime(proc, proc.Length);
-
+            mySRTF.findavgTime(proc2, proc2.Length);
+            
             //RR Table 4
             // Time quantum
             //int quantum = 2;
 
             RR myRR = new RR();
             Console.WriteLine("\nRound Robin:");
-            myRR.findavgTime(proc, proc.Length);
-
+            myRR.findavgTime(proc3, proc3.Length);
+            
             //PQ Table 5
             Console.WriteLine("\nPriority Scheduling:");
-            myPQ.findavgTime(proc, proc.Length);
-
-            /*
-            //SJN
-            int num, temp;
-
-            cout << "Enter number of Process: ";
-            cin >> num;
-
-            cout << "...Enter the process ID...\n";
-            for (int i = 0; i < num; i++)
-            {
-                cout << "...Process " << i + 1 << "...\n";
-                cout << "Enter Process Id: ";
-                cin >> mat[i][0];
-                cout << "Enter Arrival Time: ";
-                cin >> mat[i][1];
-                cout << "Enter Burst Time: ";
-                cin >> mat[i][2];
-            }
-
-            cout << "Before Arrange...\n";
-            cout << "Process ID\tArrival Time\tBurst Time\n";
-            for (int i = 0; i < num; i++)
-            {
-                cout << mat[i][0] << "\t\t" << mat[i][1] << "\t\t" << mat[i][2] << "\n";
-            }
-
-            arrangeArrival(num, mat);
-            completionTime(num, mat);
-            cout << "Final Result...\n";
-            cout << "Process ID\tArrival Time\tBurst Time\tWaiting Time\tTurnaround Time\n";
-            for (int i = 0; i < num; i++)
-            {
-                cout << mat[i][0] << "\t\t" << mat[i][1] << "\t\t" << mat[i][2] << "\t\t" << mat[i][4] << "\t\t" << mat[i][5] << "\n";
-            }
-            */
+            myPQ.findavgTime(proc4, proc4.Length);
+            
         }
     }
 }

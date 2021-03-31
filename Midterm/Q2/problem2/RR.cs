@@ -11,24 +11,26 @@ namespace problem2
     {
         // Method to find the waiting time
         // for all processes
-        static void findWaitingTime(Process[] proc, int n,
-                                        int[] wt)
+        static void findWaitingTime(Process[] proc,
+             int n, int[] wt, int[] tat)
         {
-            int[] rt = new int[n];
-
-            // Copy the burst time into rt[]
-            for (int i = 0; i < n; i++)
-                rt[i] = proc[i].bt;
-
-            int t = 0;
             int quantum = 3;
 
-            // Process until all processes gets
-            // completed
+            // Make a copy of burst times bt[] to 
+            // store remaining burst times.
+            int[] rem_bt = new int[n];
+
+            for (int i = 0; i < n; i++)
+                rem_bt[i] = proc[i].bt;
+
+            int t = 0; // Current time
+
+            // Keep traversing processes in round
+            // robin manner until all of them are
+            // not done.
             while (true)
             {
                 bool done = true;
-
                 // Traverse all processes one by
                 // one repeatedly
                 for (int i = 0; i < n; i++)
@@ -36,13 +38,13 @@ namespace problem2
                     // If burst time of a process
                     // is greater than 0 then only
                     // need to process further
-                    if (rt[i] > 0)
+                    if (rem_bt[i] > 0)
                     {
 
                         // There is a pending process
                         done = false;
 
-                        if (rt[i] > quantum)
+                        if (rem_bt[i] > quantum)
                         {
                             // Increase the value of t i.e.
                             // shows how much time a process
@@ -51,7 +53,7 @@ namespace problem2
 
                             // Decrease the burst_time of 
                             // current process by quantum
-                            rt[i] -= quantum;   //quantum
+                            rem_bt[i] -= quantum;
                         }
 
                         // If burst time is smaller than
@@ -63,17 +65,18 @@ namespace problem2
                             // Increase the value of t i.e.
                             // shows how much time a process
                             // has been processed
-                            t = t + rt[i];
+                            t = t + rem_bt[i];
+                            tat[i] = t; //serv
 
                             // Waiting time is current
                             // time minus time used by 
                             // this process
-                            wt[i] = t - proc[i].bt;
+                            wt[i] = t - proc[i].bt - proc[i].art;
 
                             // As the process gets fully 
                             // executed make its remaining
                             // burst time = 0
-                            rt[i] = 0;
+                            rem_bt[i] = 0;
                         }
                     }
                 }
@@ -83,9 +86,10 @@ namespace problem2
                     break;
             }
         }
+
         // Method to calculate turn around time
-        static void findTurnAroundTime(Process[] proc, int n,
-                                int[] wt, int[] tat)
+        static void findTurnAroundTime(Process[] proc,
+                   int n, int[] wt, int[] tat)
         {
             // calculating turnaround time by adding
             // bt[i] + wt[i]
@@ -93,15 +97,15 @@ namespace problem2
                 tat[i] = proc[i].bt + wt[i];
         }
 
-        // Method to calculate average time
+        //print
         public void findavgTime(Process[] proc, int n)
         {
             int[] wt = new int[n]; int[] tat = new int[n];
-            int total_wt = 0, total_tat = 0;
+            int total_wt = 0, total_tat = 0, service_time = 0;
 
             // Function to find waiting time of all
             // processes
-            findWaitingTime(proc, n, wt);
+            findWaitingTime(proc, n, wt, tat);
 
             // Function to find turn around time for
             // all processes
@@ -112,21 +116,23 @@ namespace problem2
             Console.WriteLine("Processes " +
                             "\tArrival time " +
                             "\tBurst time " +
+                            "\tService time " +
                             "\tPriority " +
-                            "\tWaiting time " +
-                            "\tTurn around time");
+                            "\tWait time");
 
             // Calculate total waiting time and
             // total turnaround time
             for (int i = 0; i < n; i++)
             {
-                total_wt = total_wt + wt[i];
-                total_tat = total_tat + tat[i];
+                //tat = wt
+                //serv = wait - art
+                total_wt += wt[i];
+                total_tat += tat[i];
+                service_time = wt[i] + proc[i].art + proc[i].bt;
                 Console.WriteLine(" " + proc[i].pid + "\t\t"
-                                + proc[i].art + "\t\t " + proc[i].bt + "\t\t " + proc[i].p + "\t\t " + wt[i]  //print format
-                                + "\t\t" + tat[i]);
+                                + proc[i].art + "\t\t " + proc[i].bt + "\t\t" + service_time + "\t\t " + proc[i].p
+                                + "\t\t" + wt[i]);
             }
-
             Console.WriteLine("Average waiting time = " +
                             (float)total_wt / (float)n);
             Console.WriteLine("Average turn around time = " +
